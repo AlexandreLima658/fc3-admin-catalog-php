@@ -1,0 +1,19 @@
+{
+    "name": "alexandrefgti/app-php-catalog-video",
+    "description": "App with PHP - Calalog Video",
+    "authors": [
+        {
+            "name": "Carlos Alexandre",
+            "email": "alexandrec658@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "src/Core/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "mockery/mockery": "^1.6"
+    }
+}
