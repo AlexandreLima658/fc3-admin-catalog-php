@@ -3,16 +3,18 @@
 namespace Core\Domain\Entity;
 use Core\Domain\Entity\Traits\MethodsMagics;
 use Core\Domain\Exception\EntityValidationException;
+use Core\Domain\ValueObjects\Uuid;
 
 class Category
 {
     use MethodsMagics;
     public function __construct(
-       protected string $id = '',
+       protected Uuid|string $id = '',
        protected string $name = '',
        protected string $description = '',
        protected bool $isActive = true
     ) {
+        $this->id = $this->id ? new Uuid($this->id) : Uuid::generate();
         $this->validate();
     }
 
