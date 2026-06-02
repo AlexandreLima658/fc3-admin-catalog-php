@@ -17,8 +17,48 @@ class DomainValidationUnitTest extends TestCase
 
             $this->assertTrue(false);
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
             $this->assertInstanceOf(EntityValidationException::class, $e);
+        }
+    }
+
+    public function testCustomMessageException()
+    {
+        try {
+            $value = '';
+            $message = "Custom message";
+            DomainValidation::notNull($value, $message);
+
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+
+            $this->assertInstanceOf(EntityValidationException::class, $e, $message);
+        }
+    }
+
+    public function testStrMaxLength()
+    {
+        try {
+            $value = 'Teste';
+            $message = "Custom message";
+            DomainValidation::strMaxLength($value, 3, $message);
+
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+
+            $this->assertInstanceOf(EntityValidationException::class, $e, $message);
+        }
+    }
+
+    public function testStrMinLength()
+    {
+        try {
+            $value = 'Tes';
+            $message = "Custom message";
+            DomainValidation::strMinLength($value,5, $message);
+
+            $this->assertTrue(false);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(EntityValidationException::class, $e, $message);
         }
     }
 
